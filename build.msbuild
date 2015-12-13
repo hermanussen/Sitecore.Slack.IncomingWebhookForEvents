@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <Import Project="Build.config" />
+
+  <Target Name="Clean">
+    <MSBuild Projects="$(ProjectToBuild)" Targets="Clean" />
+    <RemoveDir Directories="$(DeployFolder)" />
+  </Target>
+
+  <Target Name="Compile" DependsOnTargets="Clean">
+    <Exec Command="$(NuGet) restore -PackagesDirectory $(PackagesDirectory)" WorkingDirectory="$(SourceFolder)" />
+    <Delete Files="@(CleanUp)" />
+    <Copy SourceFiles="@(References)" DestinationFolder="lib" />
+
+    <MSBuild Projects="$(ProjectToBuild)" />
+  </Target>
+
+  <Target Name="Packages" DependsOnTargets="Compile">
+    <MakeDir Directories="$(DeployFolder)" />
+    <Exec Command="$(NuGet) pack Sitecore.Slack.IncomingWebhookForEvents/Sitecore.Slack.IncomingWebhookForEvents.csproj -Properties Configuration=Release -OutputDirectory .\$(DeployFolder) -Build -Symbols" WorkingDirectory="$(SourceFolder)" />
+  </Target>
+
+  <Target Name="Deploy" DependsOnTargets="Packages">
+    <Exec Command="$(NuGet) push .\$(DeployFolder)\Sitecore.Slack.IncomingWebhookForEvents.?.*.?.nupkg" WorkingDirectory="$(SourceFolder)" />
+  </Target>
+</Project>

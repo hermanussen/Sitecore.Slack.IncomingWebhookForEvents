@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>Sitecore.Slack.IncomingWebhookForEvents</id>
+    <version>1.0.0.0</version>
+    <title>Sitecore.Slack.IncomingWebhookForEvents</title>
+    <authors>Robin Hermanussen</authors>
+    <owners>Robin Hermanussen</owners>
+    <licenseUrl>https://github.com/hermanussen/Sitecore.Slack.IncomingWebhookForEvents/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/hermanussen/Sitecore.Slack.IncomingWebhookForEvents</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Send a message from Sitecore to a channel on Slack when users change an item, publish or install a package</description>
+    <copyright>Copyright 2015</copyright>
+    <tags>Sitecore Slack Webhook Events</tags>
+  </metadata>
+</package>

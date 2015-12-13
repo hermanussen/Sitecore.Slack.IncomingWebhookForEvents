@@ -58,9 +58,10 @@
     <Compile Include="Slack\Payload.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App_Config\Include\Sitecore.Slack.IncomingWebhookForEvents.Config">
+    <Content Include="App_Config\Include\Sitecore.Slack.IncomingWebhookForEvents.Config">
       <SubType>Designer</SubType>
-    </None>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
