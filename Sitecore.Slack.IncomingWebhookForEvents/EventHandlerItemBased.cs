@@ -14,6 +14,11 @@
     {
         public override void OnEventFired(object sender, EventArgs args)
         {
+            if (!IsEnabled)
+            {
+                return;
+            }
+
             Assert.ArgumentNotNull(args, "args");
 
             object[] parameters = Event.ExtractParameters(args);

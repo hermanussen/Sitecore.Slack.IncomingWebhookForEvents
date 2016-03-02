@@ -29,6 +29,11 @@
 
         protected EventHandlerBase()
         {
+            if (!IsEnabled)
+            {
+                return;
+            }
+
             const string settingName = "Sitecore.Slack.IncomingWebhookForEvents.BaseUrl";
             this.SlackBaseUrl = Configuration.Settings.GetSetting(settingName);
             Assert.IsNotNullOrEmpty(
@@ -159,6 +164,18 @@
                     .Split(new[] { '|' }, StringSplitOptions.RemoveEmptyEntries);
             return pathIncludes.Any(p => target.Paths.FullPath
                 .StartsWith(p, StringComparison.InvariantCultureIgnoreCase));
+        }
+
+        /// <summary>
+        /// Gets a value indicating whether the module is enabled.
+        /// </summary>
+        protected bool IsEnabled
+        {
+            get
+            {
+                const string enabledSettingName = "Sitecore.Slack.IncomingWebhookForEvents.Enabled";
+                return Configuration.Settings.GetBoolSetting(enabledSettingName, false);
+            }
         }
     }
 }

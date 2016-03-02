@@ -13,6 +13,11 @@
     {
         public override void OnEventFired(object sender, EventArgs args)
         {
+            if (!IsEnabled)
+            {
+                return;
+            }
+
             Assert.ArgumentNotNull(args, "args");
 
             Publisher publisher = Event.ExtractParameter(args, 0) as Publisher;

@@ -14,6 +14,11 @@
     {
         public override void OnEventFired(object sender, EventArgs args)
         {
+            if (!IsEnabled)
+            {
+                return;
+            }
+
             Assert.ArgumentNotNull(args, "args");
 
             InstallationEventArgs installArgs = Event.ExtractParameter(args, 0) as InstallationEventArgs;
